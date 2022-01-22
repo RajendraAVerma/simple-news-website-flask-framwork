@@ -1,0 +1,16 @@
+.imagebox {
+    color: blueviolet;
+    height: 200px;
+    width: 200px;
+}
+.p {
+    color: red;
+    font-family: courier;
+    font-size: 160%;
+  }
+
+.test {
+    background-color: red;
+    height: 200px;
+    width: 200px;
+}
