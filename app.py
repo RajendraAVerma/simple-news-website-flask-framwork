@@ -1,0 +1,1 @@
+print("This is very basic flask framwork and api based news website")
