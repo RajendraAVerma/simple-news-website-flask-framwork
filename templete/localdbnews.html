@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>this is from local database</title>
+
+{% endblock %}
+
+{% block body %}
+<h1>
+    this is from local database news
+</h1>
+{% for item in localList %}
+<h1>item.title</h1>
+<h3>item.author</h3>
+<h4>item.date_posted</h4>
+<p>item.content</p>
+{% endfor %}
+{% endblock %}
