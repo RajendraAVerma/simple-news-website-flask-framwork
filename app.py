@@ -21,7 +21,7 @@ class BlogPost(db.Model):
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     def __repr__(self):
-        return 'blog post' + str(self.id)
+        return 'blog post ' + str(self.id)
 
 
 
@@ -30,14 +30,12 @@ class BlogPost(db.Model):
 def index():
     return render_template('index.html', newsList = newsList)
 
-# # working on it >>>>>>>>>>>>>>>>>>> 
-# @app.route('/localdbnews')
-# def myApp():
-#     db.session.add(BlogPost(title='this is post 1 >', content="this is content of 1", author =" rajendra a verma"))
-
-#     locallist = BlogPost.query.all()
-#     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>", locallist)
-#     return render_template('localdbnews.html', localList = locallist)
+# working on it >>>>>>>>>>>>>>>>>>> 
+@app.route('/localdbnews')
+def myApp():
+    db.session.add(BlogPost(title='this is post 1 >', content="this is content of 1", author =" rajendra a verma"))
+    db.session.commit()
+    return render_template('localdbnews.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
