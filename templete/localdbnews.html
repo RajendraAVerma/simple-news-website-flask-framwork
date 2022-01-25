@@ -11,13 +11,24 @@
     this is from local database news
 </h1>
 
-<!-- 
+<form action="/localdbnews" method="post">
+    <p>Title</p>
+    <input type="text" name="title" id="title">
+    <p>Author</p>
+    <input type="text" name="author" id="author">
+    <p>content</p>
+    <input type="text" name="content" id="content">
+    <br>
+    <br>
+    <input type="submit" value="SUBMIT">
+</form>
+
 {% for item in localList %}
-<h1>item.title</h1>
-<h3>item.author</h3>
-<h4>item.date_posted</h4>
-<p>item.content</p>
+<h1>{{item.title}}</h1>
+<h3>{{item.author}}</h3>
+<h4>{{item.date_posted}}</h4>
+<p>{{item.content}}</p>
 {% endfor %}
- -->
+
 
 {% endblock %}

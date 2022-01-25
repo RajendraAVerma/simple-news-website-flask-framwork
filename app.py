@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -31,11 +31,28 @@ def index():
     return render_template('index.html', newsList = newsList)
 
 # working on it >>>>>>>>>>>>>>>>>>> 
-@app.route('/localdbnews')
+@app.route('/localdbnews', methods = ['GET', 'POST'])
 def myApp():
-    db.session.add(BlogPost(title='this is post 1 >', content="this is content of 1", author =" rajendra a verma"))
-    db.session.commit()
-    return render_template('localdbnews.html')
+    
+    if request.method == 'POST':
+        title = request.form['title']
+        author =request.form['author']
+        content = request.form['content']
+        blogPost = BlogPost(title=title, author=author, content=content) 
+        db.session.add(blogPost)
+        db.session.commit()
+    
+    locallist = BlogPost.query.all()  
+
+    return render_template('localdbnews.html', localList = locallist)
+
+@app.route('/getmethod', methods = ['POST', 'GET'])
+def getmethod():
+
+    if request.method == 'GET':
+        title = request.args.get('title')
+        return  f'<h1>{title}</h1>'
+
 
 if __name__ == '__main__':
     app.run(debug=True)
