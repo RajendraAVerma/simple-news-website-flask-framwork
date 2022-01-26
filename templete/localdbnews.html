@@ -24,10 +24,11 @@
 </form>
 
 {% for item in localList %}
-<h1>Title : {{item.title}}</h1>
+<h1>Post {{item.id}} : {{item.title}}</h1>
 <h3>Author : {{item.author}}</h3>
-<h4>Date : {{item.date_posted}}</h4>
-<p>{{item.content}}</p>
+<p>Date : {{item.date_posted}}<p>
+<h4>{{item.content}}</h4>
+<a href="/delete/{{item.id}}">This is a link</a>
 {% endfor %}
 
 

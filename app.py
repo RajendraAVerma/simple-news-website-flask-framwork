@@ -1,8 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
-from matplotlib.pyplot import title
 from services.api import Api
 
 apiClass = Api()
@@ -45,6 +43,16 @@ def myApp():
     locallist = BlogPost.query.all()  
 
     return render_template('localdbnews.html', localList = locallist)
+
+@app.route('/delete/<int:id>', methods=['GET', 'POST'])
+def delete(id):
+    blogpost = BlogPost.query.filter_by(id=f'{id}').first()
+    db.session.delete(blogpost)
+    db.session.commit()
+    return redirect('/localdbnews')    
+
+
+
 
 @app.route('/getmethod', methods = ['POST', 'GET'])
 def getmethod():
