@@ -51,6 +51,8 @@ def delete(id):
     db.session.commit()
     return redirect('/localdbnews')    
 
+# TODO: implementing update operation - 27-01-2022
+
 
 
 
