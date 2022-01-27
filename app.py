@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, template_rendered
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from services.api import Api
@@ -51,8 +51,17 @@ def delete(id):
     db.session.commit()
     return redirect('/localdbnews')    
 
-# TODO: implementing update operation - 27-01-2022
-
+@app.route('/update/<int:id>', methods = ['POST', 'GET'])
+def update(id):
+    blogpost = BlogPost.query.filter_by(id=f'{id}').first()
+    if request.method == 'POST':
+        title = request.form['title']
+        author = request.form['author']
+        content = request.form['content']
+        BlogPost.query.filter_by(id=f'{id}').first().update({'title': title, 'author': author, 'content': content},synchronize_session=False)
+        db.session.commit()
+        return redirect('/localdbnews')
+    return render_template('updatepost.html', blogpost= blogpost)
 
 
 

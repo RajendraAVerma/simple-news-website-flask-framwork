@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>UDATE PAGE</title>
+{% endblock %}
+{% block body %}
+<h2>UDATE</h2>
+<form action="/localdbnews" method="post">
+    <p>Title</p>
+    <input type="text" name="title" value="{{blogpost.title}}" id="title">
+    <p>Author</p>
+    <input type="text" name="author" value="{{blogpost.author}}" id="author">
+    <p>content</p>
+    <input type="text" name="content" value="{{blogpost.content}}" id="content">
+    <br>
+    <br>
+    <input type="submit" value="SUBMIT">
+</form>
+{% endblock %}
